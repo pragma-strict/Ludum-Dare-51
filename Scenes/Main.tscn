@@ -1,0 +1,717 @@
+[gd_scene load_steps=53 format=2]
+
+[ext_resource path="res://Scripts/PlayerCam.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/foo_item.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/GameManager.gd" type="Script" id=4]
+[ext_resource path="res://Fonts/RobotoBold.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Scenes/PressurePad.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Fonts/default_theme.tres" type="Theme" id=7]
+[ext_resource path="res://Scripts/TimerHUD.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/turret.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/InteractRay.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/InteractLabel.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/label_theme.tres" type="Theme" id=12]
+[ext_resource path="res://Audio/32 - apathy.wav" type="AudioStream" id=13]
+[ext_resource path="res://Audio/foot_4.wav" type="AudioStream" id=14]
+[ext_resource path="res://Audio/foot_2.wav" type="AudioStream" id=15]
+[ext_resource path="res://Audio/foot_5.wav" type="AudioStream" id=16]
+[ext_resource path="res://Audio/foot_3.wav" type="AudioStream" id=17]
+[ext_resource path="res://Audio/foot_1.wav" type="AudioStream" id=18]
+[ext_resource path="res://Audio/foot_8.wav" type="AudioStream" id=19]
+[ext_resource path="res://Audio/foot_7.wav" type="AudioStream" id=20]
+[ext_resource path="res://Audio/foot_9.wav" type="AudioStream" id=21]
+[ext_resource path="res://Audio/foot_6.wav" type="AudioStream" id=22]
+[ext_resource path="res://Audio/jump_3.wav" type="AudioStream" id=23]
+[ext_resource path="res://Audio/jump_4.wav" type="AudioStream" id=24]
+[ext_resource path="res://Audio/jump_5.wav" type="AudioStream" id=25]
+[ext_resource path="res://Audio/jump_1.wav" type="AudioStream" id=26]
+[ext_resource path="res://Audio/jump_6.wav" type="AudioStream" id=27]
+[ext_resource path="res://Audio/jump_2.wav" type="AudioStream" id=28]
+[ext_resource path="res://Audio/throw_1.wav" type="AudioStream" id=29]
+[ext_resource path="res://Audio/throw_4.wav" type="AudioStream" id=30]
+[ext_resource path="res://Audio/throw_2.wav" type="AudioStream" id=31]
+[ext_resource path="res://Audio/throw_3.wav" type="AudioStream" id=32]
+[ext_resource path="res://Fonts/death_theme.tres" type="Theme" id=33]
+[ext_resource path="res://Fonts/crosshair_theme.tres" type="Theme" id=34]
+[ext_resource path="res://main.tres" type="Environment" id=35]
+[ext_resource path="res://Audio/timer_beep.wav" type="AudioStream" id=36]
+[ext_resource path="res://Audio/explode.wav" type="AudioStream" id=37]
+[ext_resource path="res://Fonts/RobotoRegular.tres" type="DynamicFont" id=38]
+[ext_resource path="res://Audio/Speech/SelfDestructModeFull.wav" type="AudioStream" id=39]
+[ext_resource path="res://Audio/Speech/TenSecondsToEscape.WAV" type="AudioStream" id=40]
+[ext_resource path="res://Scenes/button_new.tscn" type="PackedScene" id=41]
+[ext_resource path="res://Scenes/exit_left.tscn" type="PackedScene" id=42]
+[ext_resource path="res://Scenes/exit_right.tscn" type="PackedScene" id=43]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.6
+height = 1.5
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Theme" id=6]
+default_font = ExtResource( 38 )
+/styles/Background = SubResource( 5 )
+Label/colors/font_color = Color( 0, 0, 0, 1 )
+Label/styles/normal = SubResource( 2 )
+
+[sub_resource type="Theme" id=9]
+default_font = ExtResource( 38 )
+/fonts/RobotoBold = ExtResource( 5 )
+/fonts/RobotoNormal = ExtResource( 38 )
+Label/fonts/font = ExtResource( 38 )
+
+[sub_resource type="CapsuleMesh" id=3]
+
+[sub_resource type="Animation" id=7]
+resource_name = "EnvironmentFadeIn"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerCam:environment")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerCam:environment:adjustment_brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.01, 1.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerCam:environment:adjustment_brightness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.01 ]
+}
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 2.38636, 2.45935, 2.35898 )
+
+[node name="Scene" type="Node"]
+script = ExtResource( 4 )
+beep_delays = [ 0.1, 0.2, 0.2, 0.5, 0.5, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0 ]
+explosion_sample = ExtResource( 37 )
+self_destruct_mode_sample = ExtResource( 39 )
+escape_sample = ExtResource( 40 )
+
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3004, 6.76248, -16.4561 )
+collision_layer = 2
+script = ExtResource( 2 )
+foostep_samples = [ ExtResource( 18 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 14 ), ExtResource( 16 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 21 ) ]
+jump_samples = [ ExtResource( 26 ), ExtResource( 28 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 27 ) ]
+throw_samples = [ ExtResource( 29 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 30 ) ]
+
+[node name="PlayerCollider" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.446059, 0 )
+shape = SubResource( 1 )
+
+[node name="PlayerCam" type="Camera" parent="Player"]
+transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0 )
+environment = ExtResource( 35 )
+script = ExtResource( 1 )
+
+[node name="InteractRay" type="RayCast" parent="Player/PlayerCam"]
+enabled = true
+cast_to = Vector3( 0, 0, -4 )
+collision_mask = 4
+debug_shape_custom_color = Color( 0.054902, 1, 0, 1 )
+debug_shape_thickness = 4
+script = ExtResource( 10 )
+
+[node name="EnvironmentRay" type="RayCast" parent="Player/PlayerCam"]
+enabled = true
+cast_to = Vector3( 0, 0, -8 )
+debug_shape_custom_color = Color( 1, 0, 0.258824, 1 )
+debug_shape_thickness = 5
+script = ExtResource( 10 )
+
+[node name="TimerHUD" type="Label" parent="Player"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -99.0
+margin_right = 247.0
+theme = ExtResource( 7 )
+align = 1
+valign = 1
+script = ExtResource( 8 )
+
+[node name="InteractLabel" type="Label" parent="Player"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -112.0
+margin_top = 37.0
+margin_right = 112.0
+margin_bottom = 106.0
+theme = ExtResource( 12 )
+align = 1
+valign = 1
+script = ExtResource( 11 )
+
+[node name="DeathLabel" type="Label" parent="Player"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+theme = ExtResource( 33 )
+align = 1
+valign = 1
+
+[node name="WinLabel" type="Label" parent="Player"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+theme = SubResource( 6 )
+text = "YOU MADE IT!!!"
+align = 1
+valign = 1
+
+[node name="Crosshair" type="Label" parent="Player"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -22.0
+margin_right = 16.0
+margin_bottom = 21.0
+theme = ExtResource( 34 )
+text = "+"
+align = 1
+valign = 1
+
+[node name="UsageHintLabel" type="Label" parent="Player"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 17.0
+margin_top = -209.0
+margin_right = 397.0
+margin_bottom = -112.0
+theme = SubResource( 9 )
+
+[node name="CapsuleMesh" type="MeshInstance" parent="Player"]
+transform = Transform( 0.7, 0, 0, 0, -3.0598e-08, -1, 0, 0.7, -4.37114e-08, 0, -0.472032, 0 )
+mesh = SubResource( 3 )
+
+[node name="AudioLeftFoot" type="AudioStreamPlayer" parent="Player"]
+volume_db = -15.0
+pitch_scale = 1.5
+
+[node name="AudioRightFoot" type="AudioStreamPlayer" parent="Player"]
+volume_db = -15.0
+pitch_scale = 1.5
+
+[node name="AudioMisc" type="AudioStreamPlayer" parent="Player"]
+volume_db = -10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+anims/EnvironmentFadeIn = SubResource( 7 )
+anims/RESET = SubResource( 8 )
+
+[node name="button_unwrapped" parent="." instance=ExtResource( 41 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.30037, 6.08183, -18.2147 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 13 )
+
+[node name="CountdownTimer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 36 )
+volume_db = -10.0
+
+[node name="Speech" type="AudioStreamPlayer" parent="."]
+
+[node name="WinArea" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.4771, -36.2911 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="WinArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0483, -0.158576, -0.471519 )
+shape = SubResource( 4 )
+
+[node name="DebugLines" type="ImmediateGeometry" parent="."]
+
+[node name="Map" type="Spatial" parent="."]
+transform = Transform( 1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -26.3349, -0.163946, 12.8667 )
+
+[node name="exit_right" parent="Map" instance=ExtResource( 43 )]
+transform = Transform( 0.769231, 0, 0, 0, 0.769231, 0, 0, 0, 0.769231, 13.1916, 10.4924, -35.0895 )
+
+[node name="CSGBox" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3349, 0.76119, -19.4535 )
+use_collision = true
+width = 7.16686
+height = 3.03312
+depth = 10.5971
+
+[node name="CSGBox35" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3349, 2.46702, -23.5199 )
+use_collision = true
+width = 2.19459
+height = 3.03312
+depth = 2.96864
+
+[node name="CSGBox7" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3349, 0, -14.3513 )
+use_collision = true
+width = 26.5335
+height = 0.965421
+depth = 53.9392
+
+[node name="CSGBox31" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.3349, 12.6673, -14.3513 )
+use_collision = true
+width = 26.5335
+height = 0.965421
+depth = 53.9392
+
+[node name="CSGBox11" type="CSGBox" parent="Map"]
+use_collision = true
+width = 26.5335
+height = 0.965421
+depth = 25.2371
+
+[node name="CSGBox32" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.5343, 0 )
+use_collision = true
+width = 26.5335
+height = 0.965421
+depth = 25.2371
+
+[node name="CSGBox19" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9839, 5.58334, 4.15094 )
+use_collision = true
+width = 26.5335
+height = 0.338567
+depth = 17.417
+
+[node name="CSGBox2" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 0.999998, -0.00185005, 0, 0.00185005, 0.999998, 26.3349, 1.43361, -25.6273 )
+snap = 0.01
+use_collision = true
+width = 7.32184
+height = 22.7478
+depth = 3.42582
+
+[node name="CSGBox33" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.44349, 1.43361, 0.800941 )
+snap = 0.01
+use_collision = true
+width = 7.32184
+height = 22.7478
+depth = 4.83683
+
+[node name="CSGBox39" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2873, 1.43361, 12.7167 )
+snap = 0.01
+use_collision = true
+width = 1.60611
+height = 6.88143
+depth = 6.59284
+
+[node name="CSGBox40" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.31133, 8.8646, 12.7326 )
+snap = 0.01
+use_collision = true
+width = 1.60611
+height = 6.88143
+depth = 6.59284
+
+[node name="CSGBox28" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1814, 8.31178, -37.2034 )
+snap = 0.01
+use_collision = true
+width = 7.32184
+height = 9.50635
+depth = 9.97762
+
+[node name="CSGBox3" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.3065, 3.55997, -4.6878 )
+snap = 0.01
+use_collision = true
+width = 16.981
+height = 17.7857
+depth = 3.42582
+
+[node name="CSGBox6" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.131, 6.79835, -4.6878 )
+snap = 0.01
+use_collision = true
+width = 6.8859
+height = 2.74879
+depth = 3.42582
+
+[node name="CSGBox4" type="CSGBox" parent="Map"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 33.5012, 8.93926, 0.248496 )
+snap = 0.01
+use_collision = true
+width = 8.44594
+height = 6.92316
+depth = 0.852613
+
+[node name="CSGBox37" type="CSGBox" parent="Map"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 29.6127, 8.93926, 4.04991 )
+snap = 0.01
+use_collision = true
+width = 8.44594
+height = 6.92316
+depth = 0.852613
+
+[node name="CSGBox25" type="CSGBox" parent="Map"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.432, 4.02063, -38.1232 )
+snap = 0.01
+use_collision = true
+width = 5.93143
+height = 9.06969
+depth = 0.852613
+
+[node name="CSGBox10" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.2843, 6.24945, -41.2775 )
+snap = 0.01
+use_collision = true
+width = 43.4205
+height = 13.4941
+depth = 0.932111
+
+[node name="CSGBox27" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2225, 6.24945, -35.2272 )
+snap = 0.01
+use_collision = true
+width = 19.6867
+height = 13.4941
+depth = 0.932111
+
+[node name="CSGBox13" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.222822, 6.24945, -12.7104 )
+snap = 0.01
+use_collision = true
+width = 26.7416
+height = 13.4941
+depth = 0.932111
+
+[node name="CSGBox17" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.8855, 2.79534, 4.5963 )
+snap = 0.01
+use_collision = true
+width = 32.6462
+height = 5.68396
+depth = 0.932111
+
+[node name="CSGBox34" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6581, 2.79534, 2.32705 )
+snap = 0.01
+use_collision = true
+width = 5.78546
+height = 5.68396
+depth = 0.932111
+
+[node name="CSGBox18" type="CSGBox" parent="Map"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 26.5181, 2.79534, 0.400992 )
+snap = 0.01
+use_collision = true
+width = 8.75472
+height = 5.68396
+depth = 0.932111
+
+[node name="CSGBox16" type="CSGBox" parent="Map"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13.3998, 6.24945, -0.255877 )
+snap = 0.01
+use_collision = true
+width = 26.7416
+height = 13.4941
+depth = 0.932111
+
+[node name="CSGBox14" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1783, 6.24945, 12.1063 )
+snap = 0.01
+use_collision = true
+width = 53.7208
+height = 13.4941
+depth = 0.932111
+
+[node name="CSGBox15" type="CSGBox" parent="Map"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.5054, 6.24945, -14.5404 )
+snap = 0.01
+use_collision = true
+width = 53.7208
+height = 13.4941
+depth = 0.932111
+
+[node name="CSGBox12" type="CSGBox" parent="Map"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.7255, 6.24945, -20.4673 )
+snap = 0.01
+use_collision = true
+width = 32.3521
+height = 13.4941
+depth = 0.932111
+
+[node name="CSGBox29" type="CSGBox" parent="Map"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.7255, 6.24945, -40.39 )
+snap = 0.01
+use_collision = true
+width = 1.18744
+height = 13.4941
+depth = 0.932111
+
+[node name="CSGBox26" type="CSGBox" parent="Map"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.7255, 3.93403, -38.4088 )
+snap = 0.01
+use_collision = true
+width = 6.84033
+height = 8.90553
+depth = 0.932111
+
+[node name="CSGBox24" type="CSGBox" parent="Map"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.7255, 6.60561, 0.576182 )
+snap = 0.01
+use_collision = true
+width = 11.319
+height = 2.00435
+depth = 0.366014
+
+[node name="CSGBox38" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 1.09314e-14, 0, 1, 0, -1.09314e-14, 0, 1, 15.2424, 6.53743, -4.1465 )
+snap = 0.01
+use_collision = true
+width = 5.17975
+height = 2.16003
+depth = 0.366014
+
+[node name="CSGBox8" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7976, 8.13655, -38.0241 )
+snap = 0.01
+use_collision = true
+width = 39.1643
+height = 0.926624
+depth = 5.6836
+
+[node name="CSGBox30" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7976, 12.6586, -38.0241 )
+snap = 0.01
+use_collision = true
+width = 39.1643
+height = 0.926624
+depth = 5.6836
+
+[node name="CSGBox9" type="CSGBox" parent="Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.5333, 8.09525, -21.955 )
+snap = 0.01
+use_collision = true
+width = 5.36235
+height = 0.926624
+depth = 38.6367
+
+[node name="CSGBox20" type="CSGBox" parent="Map"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.797068, 5.27427, 8.89747 )
+snap = 0.01
+use_collision = true
+width = 5.36235
+height = 0.926624
+depth = 28.5915
+
+[node name="CSGBox21" type="CSGBox" parent="Map"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.432, 5.27427, 0.915748 )
+snap = 0.01
+use_collision = true
+width = 5.36235
+height = 0.926624
+depth = 28.5915
+
+[node name="CSGBox22" type="CSGBox" parent="Map"]
+transform = Transform( 1.1127e-07, 0.529164, 0.848519, -6.93915e-08, 0.848519, -0.529164, -1, 0, 1.31134e-07, -2.81665, 2.49351, -9.86012 )
+snap = 0.01
+use_collision = true
+width = 5.36235
+height = 0.241656
+depth = 12.2286
+
+[node name="CSGBox23" type="CSGBox" parent="Map"]
+transform = Transform( 1, -1.49012e-08, -1.63913e-07, -6.93915e-08, 0.848519, -0.529164, 1.49012e-07, 0.529164, 0.848519, 36.6735, 7.10346, -0.327338 )
+snap = 0.01
+use_collision = true
+width = 5.36235
+height = 0.241656
+depth = 5.19988
+
+[node name="CSGBox5" type="CSGBox" parent="Map"]
+transform = Transform( 0.862884, -0.505401, 0, 0.505401, 0.862884, 0, 0, 0, 1, 20.9979, 0.81871, -20.4895 )
+snap = 0.01
+use_collision = true
+width = 4.47676
+height = 0.677501
+depth = 3.08498
+
+[node name="CSGBox36" type="CSGBox" parent="Map"]
+transform = Transform( -3.77179e-08, 2.20918e-08, 1, 0.505401, 0.862884, 0, -0.862884, 0.505401, -4.37114e-08, 26.3409, 2.12773, -20.5097 )
+snap = 0.01
+use_collision = true
+width = 4.47676
+height = 1.63346
+depth = 2.20149
+
+[node name="foo_item" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.983788, 0, -0.179335, 0, 1, 0, 0.179335, 0, 0.983788, 4.65615, 3.14947, -7.36013 )
+
+[node name="foo_item26" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.906389, 0, 0.422444, 0, 1, 0, -0.422444, 0, 0.906389, 18.6259, 11.2974, -7.59976 )
+
+[node name="foo_item27" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.900751, 0, -0.434335, 0, 1, 0, 0.434335, 0, 0.900751, 18.6259, 11.2974, -9.14383 )
+
+[node name="foo_item28" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.995353, 0, -0.0962974, 0, 1, 0, 0.0962974, 0, 0.995353, 18.6259, 11.2974, -10.2441 )
+
+[node name="foo_item29" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.982887, 0, -0.184209, 0, 1, 0, 0.184209, 0, 0.982887, 19.1672, 11.2974, -8.34555 )
+
+[node name="foo_item5" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8055, 3.14947, -17.6524 )
+
+[node name="foo_item2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.20757, 0.75348, -4.79438 )
+
+[node name="foo_item14" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3914, 0.75348, -1.27426 )
+
+[node name="foo_item17" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -42.205, 0.75348, 3.19928 )
+
+[node name="foo_item18" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -39.9734, 0.75348, -0.00337577 )
+
+[node name="foo_item20" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -41.5168, 0.75348, 17.7639 )
+
+[node name="foo_item21" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -41.18, 0.75348, 17.1383 )
+
+[node name="foo_item6" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99487, 0.75348, -21.7946 )
+
+[node name="foo_item11" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9472, 0.75348, -34.2851 )
+
+[node name="foo_item12" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9472, 0.75348, -31.816 )
+
+[node name="foo_item7" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.56971, 0.75348, -23.8858 )
+
+[node name="foo_item8" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96151, 0.75348, -23.8858 )
+
+[node name="foo_item9" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5038, 0.75348, -38.8673 )
+
+[node name="foo_item3" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.816006, 0, -0.578043, 0, 1, 0, 0.578043, 0, 0.816006, 5.65321, 0.75348, -4.35314 )
+
+[node name="foo_item32" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.962829, 0, 0.270113, 0, 1, 0, -0.270113, 0, 0.962829, 8.05155, 0.753479, -4.49835 )
+
+[node name="foo_item33" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.836936, 0, 0.5473, 0, 1, 0, -0.5473, 0, 0.836936, 8.33732, 3.2351, -6.85147 )
+
+[node name="foo_item34" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.16701, 0, 0.985955, 0, 1, 0, -0.985955, 0, -0.16701, 9.28855, 3.2351, -6.85147 )
+
+[node name="foo_item23" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.819722, 0, -0.572761, 0, 1, 0, 0.572761, 0, 0.819722, 14.6143, 7.66908, 10.213 )
+
+[node name="foo_item24" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.574648, 0, -0.818401, 0, 1, 0, 0.818401, 0, 0.574648, 14.9873, 7.66908, 11.1573 )
+
+[node name="foo_item25" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.794616, 0, 0.607112, 0, 1, 0, -0.607112, 0, 0.794616, 12.4622, 7.66908, 10.2164 )
+
+[node name="foo_item10" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5509, 0.75348, 9.6638 )
+
+[node name="PressurePad" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6004, 0.463578, 12.8729 )
+
+[node name="PressurePad5" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.588858, 0, -0.808237, 0, 1, 0, 0.808237, 0, -0.588858, 5.38933, 0.463578, 10.8069 )
+
+[node name="PressurePad3" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.258819, -0.954653, -0.147139, 8.64025e-08, 0.15233, -0.98833, 0.965926, 0.255799, 0.039426, 7.36657, 1.38788, 12.7686 )
+
+[node name="PressurePad4" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.169659, -0.94055, -0.294245, 8.34351e-08, 0.298574, -0.954386, 0.985503, 0.16192, 0.0506558, 7.12572, 1.38788, 13.4881 )
+
+[node name="turret" parent="." instance=ExtResource( 9 )]
+transform = Transform( 0.501707, 0, 0.865038, 0, 1, 0, -0.865038, 0, 0.501707, 5.03057, 0.463578, -37.3072 )
+
+[node name="turret4" parent="." instance=ExtResource( 9 )]
+transform = Transform( -0.606349, 0, 0.795198, 0, 1, 0, -0.795198, 0, -0.606349, 12.14, 0.463578, 13.6307 )
+
+[node name="turret5" parent="." instance=ExtResource( 9 )]
+transform = Transform( 0.868882, 0, -0.495019, 0, 1, 0, 0.495019, 0, 0.868882, 18.3612, 0.463578, 21.6337 )
+
+[node name="exit_left" parent="." instance=ExtResource( 42 )]
+transform = Transform( -1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, -1, 24.4163, 14.9949, -3.48616 )
+
+[node name="exit_right" parent="." instance=ExtResource( 43 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.3274, 3.19168, 4.54578 )
+
+[node name="exit_left2" parent="." instance=ExtResource( 42 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43.1488, 10.8243, 0.515933 )
+
+[node name="exit_left3" parent="." instance=ExtResource( 42 )]
+transform = Transform( -1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, -1, 24.4162, 10.3535, 25.1009 )
+
+[connection signal="self_destruct" from="." to="Player" method="kill"]
+[connection signal="timer_updated" from="." to="Player/TimerHUD" method="_update_time"]
+[connection signal="looked_at_item" from="Player" to="Player/InteractLabel" method="_on_Player_looked_at_item"]
+[connection signal="looked_away_from_item" from="Player" to="Player/InteractLabel" method="_on_Player_looked_away_from_item"]
+[connection signal="collide_begin" from="Player/PlayerCam/InteractRay" to="Player" method="_on_InteractRay_collide_begin"]
+[connection signal="collide_end" from="Player/PlayerCam/InteractRay" to="Player" method="_on_InteractRay_collide_end"]
+[connection signal="pressed" from="button_unwrapped" to="." method="_self_destruct_timer_reset"]
+[connection signal="body_entered" from="WinArea" to="." method="win"]
+[connection signal="body_entered" from="WinArea" to="Player" method="win"]
+[connection signal="remote_trigger_update" from="turret" to="Player" method="_on_turret_remote_trigger_update"]
+[connection signal="remote_trigger_update" from="turret4" to="Player" method="_on_turret_remote_trigger_update"]
+[connection signal="remote_trigger_update" from="turret5" to="Player" method="_on_turret_remote_trigger_update"]

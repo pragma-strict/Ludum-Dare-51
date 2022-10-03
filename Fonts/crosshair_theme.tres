@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=2]
+
+[ext_resource path="res://Fonts/RobotoRegular.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Fonts/RobotoBold.tres" type="DynamicFont" id=2]
+
+[resource]
+default_font = ExtResource( 2 )
+/fonts/RobotoBold = ExtResource( 2 )
+/fonts/RobotoNormal = ExtResource( 1 )
+Label/fonts/font = ExtResource( 1 )
+Label/styles/normal = null

@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/TenSecondsToEscape.WAV-01b8d929a45eed5ac432a1b63bce209b.sample"
+
+[deps]
+
+source_file="res://Audio/Speech/TenSecondsToEscape.WAV"
+dest_files=[ "res://.import/TenSecondsToEscape.WAV-01b8d929a45eed5ac432a1b63bce209b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/default_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Fonts/RobotoRegular.tres" type="DynamicFont" id=3]
+
+[sub_resource type="ProceduralSky" id=2]
+
+[sub_resource type="Environment" id=1]
+background_mode = 1
+background_sky = SubResource( 2 )
+dof_blur_far_enabled = true
+dof_blur_far_amount = 0.33
+
+[sub_resource type="Theme" id=3]
+Label/fonts/font = ExtResource( 3 )
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+environment = SubResource( 1 )
+
+[node name="Press Any Key" type="Label" parent="Camera"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+theme = ExtResource( 2 )
+text = "Press E to begin..."
+align = 1
+valign = 1
+
+[node name="Quit" type="Label" parent="Camera"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -234.0
+margin_right = 512.0
+margin_bottom = 360.0
+theme = SubResource( 3 )
+text = "or ESC to quit"
+align = 1
+valign = 1

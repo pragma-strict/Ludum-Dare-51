@@ -1,0 +1,168 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Models/turret_gun.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Models/Material.material" type="Material" id=2]
+[ext_resource path="res://Scripts/Turret.gd" type="Script" id=3]
+[ext_resource path="res://Textures/Interact Hint.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/InteractHint.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Projectile.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Materials/LightOff.tres" type="Material" id=7]
+[ext_resource path="res://Materials/RedEmission.tres" type="Material" id=8]
+[ext_resource path="res://Materials/GreenEmission.tres" type="Material" id=9]
+[ext_resource path="res://main.tres" type="Environment" id=10]
+[ext_resource path="res://Audio/transmitter_fire.wav" type="AudioStream" id=11]
+[ext_resource path="res://Audio/transmitter_disconnect.wav" type="AudioStream" id=12]
+[ext_resource path="res://Audio/transmitter_connect.wav" type="AudioStream" id=13]
+[ext_resource path="res://Audio/gunshot.wav" type="AudioStream" id=14]
+
+[sub_resource type="ArrayMesh" id=1]
+resource_name = "turret_Cube001"
+surfaces/0 = {
+"aabb": AABB( -1.39819, -2.38419e-07, -1.55675, 2.79637, 3.59659, 2.42173 ),
+"array_data": PoolByteArray( 200, 119, 40, 190, 75, 46, 102, 64, 159, 129, 87, 62, 193, 26, 42, 113, 0, 57, 0, 60, 200, 119, 40, 190, 75, 46, 102, 64, 159, 129, 87, 62, 42, 100, 193, 76, 0, 59, 0, 52, 200, 119, 40, 190, 75, 46, 102, 64, 159, 129, 87, 62, 46, 0, 42, 113, 0, 57, 0, 0, 24, 111, 135, 190, 75, 46, 102, 64, 192, 147, 24, 61, 193, 26, 42, 113, 0, 57, 0, 58, 24, 111, 135, 190, 75, 46, 102, 64, 192, 147, 24, 61, 130, 80, 42, 113, 0, 57, 0, 58, 24, 111, 135, 190, 75, 46, 102, 64, 192, 147, 24, 61, 42, 100, 193, 76, 0, 59, 0, 56, 160, 170, 230, 186, 143, 205, 97, 64, 72, 144, 238, 61, 42, 100, 193, 76, 0, 57, 0, 52, 160, 170, 230, 186, 143, 205, 97, 64, 72, 144, 238, 61, 46, 0, 42, 113, 0, 57, 0, 52, 160, 170, 230, 186, 143, 205, 97, 64, 72, 144, 238, 61, 100, 193, 42, 113, 0, 57, 0, 52, 124, 103, 208, 189, 143, 205, 97, 64, 48, 82, 104, 189, 130, 80, 42, 113, 0, 57, 0, 56, 124, 103, 208, 189, 143, 205, 97, 64, 48, 82, 104, 189, 42, 100, 193, 76, 0, 57, 0, 56, 124, 103, 208, 189, 143, 205, 97, 64, 48, 82, 104, 189, 100, 193, 42, 113, 0, 57, 0, 56, 188, 204, 204, 189, 75, 46, 102, 64, 160, 166, 125, 190, 130, 0, 0, 110, 0, 57, 0, 0, 188, 204, 204, 189, 75, 46, 102, 64, 160, 166, 125, 190, 0, 93, 93, 127, 0, 59, 0, 52, 188, 204, 204, 189, 75, 46, 102, 64, 160, 166, 125, 190, 93, 126, 0, 110, 0, 57, 0, 60, 230, 204, 204, 61, 75, 46, 102, 64, 157, 166, 125, 190, 0, 93, 93, 127, 0, 59, 0, 56, 230, 204, 204, 61, 75, 46, 102, 64, 157, 166, 125, 190, 93, 126, 0, 110, 0, 57, 0, 58, 230, 204, 204, 61, 75, 46, 102, 64, 157, 166, 125, 190, 126, 0, 0, 110, 0, 57, 0, 58, 190, 204, 204, 189, 144, 205, 97, 64, 155, 206, 116, 189, 130, 0, 0, 110, 0, 57, 0, 52, 190, 204, 204, 189, 144, 205, 97, 64, 155, 206, 116, 189, 0, 93, 93, 127, 0, 57, 0, 52, 190, 204, 204, 189, 144, 205, 97, 64, 155, 206, 116, 189, 0, 223, 0, 110, 0, 57, 0, 52, 230, 204, 204, 61, 144, 205, 97, 64, 141, 206, 116, 189, 0, 93, 93, 127, 0, 57, 0, 56, 230, 204, 204, 61, 144, 205, 97, 64, 141, 206, 116, 189, 0, 223, 0, 110, 0, 57, 0, 56, 230, 204, 204, 61, 144, 205, 97, 64, 141, 206, 116, 189, 126, 0, 0, 110, 0, 57, 0, 56, 34, 111, 135, 62, 75, 46, 102, 64, 172, 147, 24, 61, 214, 100, 63, 76, 0, 59, 0, 52, 34, 111, 135, 62, 75, 46, 102, 64, 172, 147, 24, 61, 126, 176, 214, 113, 0, 57, 0, 0, 34, 111, 135, 62, 75, 46, 102, 64, 172, 147, 24, 61, 63, 26, 214, 113, 0, 57, 0, 60, 223, 119, 40, 62, 75, 46, 102, 64, 158, 129, 87, 62, 210, 0, 214, 113, 0, 57, 0, 58, 223, 119, 40, 62, 75, 46, 102, 64, 158, 129, 87, 62, 214, 100, 63, 76, 0, 59, 0, 56, 223, 119, 40, 62, 75, 46, 102, 64, 158, 129, 87, 62, 63, 26, 214, 113, 0, 57, 0, 58, 155, 103, 208, 61, 144, 205, 97, 64, 63, 82, 104, 189, 156, 193, 214, 113, 0, 57, 0, 52, 155, 103, 208, 61, 144, 205, 97, 64, 63, 82, 104, 189, 214, 100, 63, 76, 0, 57, 0, 52, 155, 103, 208, 61, 144, 205, 97, 64, 63, 82, 104, 189, 126, 176, 214, 113, 0, 57, 0, 52, 96, 180, 230, 58, 144, 205, 97, 64, 70, 144, 238, 61, 156, 193, 214, 113, 0, 57, 0, 56, 96, 180, 230, 58, 144, 205, 97, 64, 70, 144, 238, 61, 210, 0, 214, 113, 0, 57, 0, 56, 96, 180, 230, 58, 144, 205, 97, 64, 70, 144, 238, 61, 214, 100, 63, 76, 0, 57, 0, 56, 252, 42, 166, 191, 0, 0, 0, 0, 58, 111, 93, 63, 193, 26, 42, 113, 44, 54, 0, 60, 252, 42, 166, 191, 0, 0, 0, 0, 58, 111, 93, 63, 0, 130, 130, 170, 45, 58, 71, 53, 252, 42, 166, 191, 0, 0, 0, 0, 58, 111, 93, 63, 46, 0, 42, 113, 44, 54, 0, 0, 200, 247, 178, 191, 0, 0, 0, 0, 14, 24, 49, 63, 193, 26, 42, 113, 44, 54, 0, 58, 200, 247, 178, 191, 0, 0, 0, 0, 14, 24, 49, 63, 130, 80, 42, 113, 44, 54, 0, 58, 200, 247, 178, 191, 0, 0, 0, 0, 14, 24, 49, 63, 0, 130, 130, 170, 56, 58, 85, 53, 244, 95, 155, 191, 0, 0, 128, 180, 220, 217, 21, 63, 130, 80, 42, 113, 62, 54, 0, 56, 244, 95, 155, 191, 0, 0, 128, 180, 220, 217, 21, 63, 0, 130, 130, 170, 49, 58, 109, 53, 244, 95, 155, 191, 0, 0, 128, 180, 220, 217, 21, 63, 100, 193, 42, 113, 62, 54, 0, 56, 40, 147, 142, 191, 0, 0, 128, 180, 8, 49, 66, 63, 0, 130, 130, 170, 38, 58, 96, 53, 40, 147, 142, 191, 0, 0, 128, 180, 8, 49, 66, 63, 46, 0, 42, 113, 62, 54, 0, 52, 40, 147, 142, 191, 0, 0, 128, 180, 8, 49, 66, 63, 100, 193, 42, 113, 62, 54, 0, 52, 152, 204, 204, 189, 0, 0, 128, 180, 164, 67, 199, 191, 130, 0, 0, 110, 44, 54, 0, 0, 152, 204, 204, 189, 0, 0, 128, 180, 164, 67, 199, 191, 0, 130, 130, 170, 56, 58, 170, 54, 152, 204, 204, 189, 0, 0, 128, 180, 164, 67, 199, 191, 93, 126, 0, 110, 44, 54, 0, 60, 240, 204, 204, 61, 0, 0, 128, 180, 164, 67, 199, 191, 0, 130, 130, 170, 45, 58, 184, 54, 240, 204, 204, 61, 0, 0, 128, 180, 164, 67, 199, 191, 93, 126, 0, 110, 44, 54, 0, 58, 240, 204, 204, 61, 0, 0, 128, 180, 164, 67, 199, 191, 126, 0, 0, 110, 44, 54, 0, 58, 248, 204, 204, 61, 0, 0, 128, 180, 114, 5, 172, 191, 0, 130, 130, 170, 38, 58, 159, 54, 248, 204, 204, 61, 0, 0, 128, 180, 114, 5, 172, 191, 0, 223, 0, 110, 62, 54, 0, 56, 248, 204, 204, 61, 0, 0, 128, 180, 114, 5, 172, 191, 126, 0, 0, 110, 62, 54, 0, 56, 200, 204, 204, 189, 0, 0, 0, 0, 113, 5, 172, 191, 130, 0, 0, 110, 62, 54, 0, 52, 200, 204, 204, 189, 0, 0, 0, 0, 113, 5, 172, 191, 0, 130, 130, 170, 49, 58, 146, 54, 200, 204, 204, 189, 0, 0, 0, 0, 113, 5, 172, 191, 0, 223, 0, 110, 62, 54, 0, 52, 202, 247, 178, 63, 0, 0, 128, 52, 9, 24, 49, 63, 0, 130, 130, 216, 153, 57, 13, 54, 202, 247, 178, 63, 0, 0, 128, 52, 9, 24, 49, 63, 126, 176, 214, 113, 44, 54, 0, 0, 202, 247, 178, 63, 0, 0, 128, 52, 9, 24, 49, 63, 63, 26, 214, 113, 44, 54, 0, 60, 254, 42, 166, 63, 0, 0, 0, 0, 55, 111, 93, 63, 210, 0, 214, 113, 44, 54, 0, 58, 254, 42, 166, 63, 0, 0, 0, 0, 55, 111, 93, 63, 0, 130, 130, 216, 153, 57, 242, 53, 254, 42, 166, 63, 0, 0, 0, 0, 55, 111, 93, 63, 63, 26, 214, 113, 44, 54, 0, 58, 40, 147, 142, 63, 0, 0, 0, 0, 5, 49, 66, 63, 156, 193, 214, 113, 62, 54, 0, 56, 40, 147, 142, 63, 0, 0, 0, 0, 5, 49, 66, 63, 210, 0, 214, 113, 62, 54, 0, 56, 40, 147, 142, 63, 0, 0, 0, 0, 5, 49, 66, 63, 0, 130, 130, 216, 167, 57, 242, 53, 245, 95, 155, 63, 0, 0, 128, 180, 217, 217, 21, 63, 156, 193, 214, 113, 62, 54, 0, 52, 245, 95, 155, 63, 0, 0, 128, 180, 217, 217, 21, 63, 0, 130, 130, 216, 167, 57, 13, 54, 245, 95, 155, 63, 0, 0, 128, 180, 217, 217, 21, 63, 126, 176, 214, 113, 62, 54, 0, 52 ),
+"array_index_data": PoolByteArray( 0, 0, 39, 0, 3, 0, 0, 0, 36, 0, 39, 0, 40, 0, 9, 0, 4, 0, 40, 0, 42, 0, 9, 0, 44, 0, 8, 0, 11, 0, 44, 0, 47, 0, 8, 0, 46, 0, 2, 0, 7, 0, 46, 0, 38, 0, 2, 0, 10, 0, 1, 0, 5, 0, 10, 0, 6, 0, 1, 0, 16, 0, 50, 0, 52, 0, 16, 0, 14, 0, 50, 0, 53, 0, 23, 0, 17, 0, 53, 0, 56, 0, 23, 0, 55, 0, 20, 0, 22, 0, 55, 0, 59, 0, 20, 0, 57, 0, 12, 0, 18, 0, 57, 0, 48, 0, 12, 0, 21, 0, 13, 0, 15, 0, 21, 0, 19, 0, 13, 0, 62, 0, 29, 0, 26, 0, 62, 0, 65, 0, 29, 0, 63, 0, 34, 0, 27, 0, 63, 0, 67, 0, 34, 0, 30, 0, 66, 0, 69, 0, 30, 0, 33, 0, 66, 0, 71, 0, 25, 0, 32, 0, 71, 0, 61, 0, 25, 0, 35, 0, 24, 0, 28, 0, 35, 0, 31, 0, 24, 0, 49, 0, 54, 0, 51, 0, 49, 0, 58, 0, 54, 0, 41, 0, 45, 0, 43, 0, 41, 0, 37, 0, 45, 0, 64, 0, 70, 0, 68, 0, 64, 0, 60, 0, 70, 0 ),
+"blend_shape_data": [  ],
+"format": 2194711,
+"index_count": 108,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 72
+}
+
+[sub_resource type="VisualShaderNodeColorConstant" id=5]
+constant = Color( 1, 0.658988, 0, 1 )
+
+[sub_resource type="VisualShader" id=6]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx, async_visible;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Color:2
+	vec3 n_out2p0 = vec3(1.000000, 0.658988, 0.000000);
+	float n_out2p1 = 1.000000;
+
+// Output:0
+	ALBEDO = n_out2p0;
+	EMISSION = n_out2p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( 10.2944, 172.117 )
+nodes/fragment/2/node = SubResource( 5 )
+nodes/fragment/2/position = Vector2( 100, 240 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 0, 0, 2, 0, 0, 5 )
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+
+[sub_resource type="SphereMesh" id=4]
+material = SubResource( 7 )
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="CylinderShape" id=3]
+height = 3.0
+
+[node name="turret" type="StaticBody"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource( 3 )
+projectile_scene = ExtResource( 6 )
+mat_red_emission = ExtResource( 8 )
+mat_green_emission = ExtResource( 9 )
+mat_light_off = ExtResource( 7 )
+remote_connect_sample = ExtResource( 13 )
+remote_disconnect_sample = ExtResource( 12 )
+remote_fire_sample = ExtResource( 11 )
+fire_sample = ExtResource( 14 )
+
+[node name="Stand" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.55935, 0 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="GunParent" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88374, 0 )
+
+[node name="Gun" type="MeshInstance" parent="GunParent"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.428569, 0 )
+mesh = ExtResource( 1 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 7 )
+
+[node name="Camera" type="Camera" parent="GunParent"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43, 0 )
+environment = ExtResource( 10 )
+
+[node name="InteractLabel" type="Sprite3D" parent="GunParent"]
+transform = Transform( 0.571429, 0, 0, 0, 0.571429, 0, 0, 0, 0.571429, 0, 0.950499, 0 )
+opacity = 0.0
+pixel_size = 0.0025
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
+
+[node name="TargetRay" type="RayCast" parent="GunParent"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.80789e-05, 0.431153, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+collision_mask = 8
+collide_with_areas = true
+debug_shape_custom_color = Color( 0.705882, 0.0235294, 0.709804, 1 )
+
+[node name="Light" type="OmniLight" parent="GunParent"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.210965, 0.392606, 0 )
+light_color = Color( 0, 0, 0, 1 )
+light_energy = 13.559
+omni_range = 0.8
+
+[node name="Particles" type="CPUParticles" parent="GunParent"]
+transform = Transform( 1, 0, 0, 0, 0.999903, -0.0139622, 0, 0.0139622, 0.999903, 0, 0.260293, -49.068 )
+emitting = false
+amount = 350
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.54
+lifetime_randomness = 0.6
+mesh = SubResource( 4 )
+emission_shape = 2
+emission_box_extents = Vector3( 0.01, 0.01, 50 )
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 0.6
+initial_velocity_random = 1.0
+linear_accel_random = 1.0
+damping = 0.5
+scale_amount = 2.0
+scale_amount_random = 0.81
+color = Color( 0.247059, 0.501961, 0.0666667, 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38658, 0 )
+shape = SubResource( 3 )
+
+[node name="FloorCheckRay" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.93928, 0 )
+enabled = true
+cast_to = Vector3( 0, -10, 0 )
+debug_shape_custom_color = Color( 0.172549, 1, 0, 1 )
+debug_shape_thickness = 5
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
